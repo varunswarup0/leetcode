@@ -32,9 +32,11 @@ class Solution {
                     counter--;
             }
 
+
             end++;
 
-            if (counter == 0) {
+            while (counter == 0) {
+
                 char beginChar = s.charAt(begin);
                 if (map.containsKey(beginChar)) {
                     map.put(beginChar, map.get(beginChar) + 1);
@@ -42,9 +44,8 @@ class Solution {
                         counter++;
                 }
 
-                if (end - begin == p.length()) {
+                if (end - begin == p.length())
                     res.add(begin);
-                }
 
                 begin++;
             }
