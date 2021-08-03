@@ -27,7 +27,7 @@ class Solution {
         while (first != null && first.next != null) {
 
             ListNode second = first.next;
-            ListNode third = first.next.next;
+            ListNode third = second.next;
 
             zeroth.next = second;
             first.next = third;

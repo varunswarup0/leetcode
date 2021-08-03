@@ -16,7 +16,6 @@ class Solution {
         boolean isBalanced;
         int height;
 
-        Pair() {}
     }
 
     Pair helper(TreeNode node) {
