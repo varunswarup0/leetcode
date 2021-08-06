@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 /*
  * @lc app=leetcode id=1 lang=java
- *
+s *
  * [1] Two Sum
  */
 
