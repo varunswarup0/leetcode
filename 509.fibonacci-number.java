@@ -14,17 +14,17 @@ class Solution {
 
         int fib0 = 0;
         int fib1 = 1;
-        int fib2 = -1;
 
 
         for (int i = 2; i <= n; i++) {
-            fib2 = fib0 + fib1;
-            fib0 = fib1;
-            fib1 = fib2;
+            int newFib1 = fib0 + fib1;
+            int newFib0 = fib1;
+            fib0 = newFib0;
+            fib1 = newFib1;
         }
 
 
-        return fib2;
+        return fib1;
     }
 }
 // @lc code=end
