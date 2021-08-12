@@ -15,34 +15,35 @@ class Solution {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
 
-        for (int i = 0; i < nums.length; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) // skip same result
+        for (int index = 0; index < nums.length; index++) {
+
+            if (index > 0 && nums[index] == nums[index - 1]) // skip same result
                 continue;
 
-            int j = i + 1;
-            int k = nums.length - 1;
-            int target = -nums[i];
+            int start = index + 1;
+            int end = nums.length - 1;
+            int target = -nums[index];
 
-            while (j < k) {
+            while (start < end) {
 
-                if (target < nums[j] + nums[k])
-                    k--;
+                if (target < nums[start] + nums[end])
+                    end--;
 
-                else if (target > nums[j] + nums[k])
-                    j++;
+                else if (target > nums[start] + nums[end])
+                    start++;
 
                 else {
 
-                    res.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    res.add(Arrays.asList(nums[index], nums[start], nums[end]));
 
-                    j++;
-                    k--;
+                    start++;
+                    end--;
 
-                    while (j < k && nums[j] == nums[j - 1]) // skip same result
-                        j++;
+                    while (start < end && nums[start] == nums[start - 1]) // skip same result
+                        start++;
 
-                    while (j < k && nums[k] == nums[k + 1]) // skip same result
-                        k--;
+                    while (start < end && nums[end] == nums[end + 1]) // skip same result
+                        end--;
                 }
             }
         }
