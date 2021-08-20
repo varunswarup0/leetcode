@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.HashSet;
 
 /*
  * @lc app=leetcode id=128 lang=java
@@ -10,23 +10,19 @@ import java.util.HashMap;
 class Solution {
     public int longestConsecutive(int[] nums) {
 
-        HashMap<Integer, Boolean> map = new HashMap<>();
+        HashSet<Integer> set = new HashSet<>();
 
         for (int val : nums)
-            map.put(val, true);
-
-        for (int val : nums)
-            if (map.containsKey(val - 1))
-                map.put(val, false);
+            set.add(val);
 
         int maxCount = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (map.get(nums[i])) {
+        for (int val : set) {
+            if (!set.contains(val - 1)) {
 
                 int count = 1;
 
-                while (map.containsKey(nums[i] + count))
+                while (set.contains(val + count))
                     count++;
 
                 maxCount = Math.max(maxCount, count);
