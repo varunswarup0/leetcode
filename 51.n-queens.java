@@ -11,7 +11,6 @@ import java.util.List;
 // @lc code=start
 class Solution {
 
-
     char[][] board;
     int columnBit = 0;
     int normalDiagonal = 0;
@@ -24,6 +23,20 @@ class Solution {
         columnBit ^= (1 << col);
         normalDiagonal ^= (1 << (row + col));
         reverseDiagonal ^= (1 << (row - col + board.length - 1));
+    }
+
+    boolean checkSquare(int row, int col) {
+
+        if ((columnBit & (1 << col)) != 0)
+            return false;
+
+        if ((normalDiagonal & (1 << (row + col))) != 0)
+            return false;
+
+        if ((reverseDiagonal & (1 << (row - col + board.length - 1))) != 0)
+            return false;
+
+        return true;
     }
 
 
@@ -52,14 +65,11 @@ class Solution {
 
 
         for (int col = 0; col < board.length; col++)
-            if (((columnBit & (1 << col)) == 0) && ((normalDiagonal & (1 << (row + col))) == 0)
-                    && ((reverseDiagonal & (1 << (row - col + board.length - 1))) == 0)) {
+            if (checkSquare(row, col)) {
                 operateOnBoard("insert", row, col);
                 solve(row + 1);
                 operateOnBoard("remove", row, col);
             }
-
     }
-
 }
 // @lc code=end
