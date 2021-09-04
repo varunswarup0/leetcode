@@ -52,6 +52,7 @@ class Solution {
     }
 
     void solve(int row) {
+
         if (row == board.length) {
             List<String> path = new ArrayList<>();
 

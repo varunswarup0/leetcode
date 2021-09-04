@@ -14,6 +14,7 @@ class Solution {
         int end = rows * cols - 1;
 
         while (start <= end) {
+
             int mid = (start + end) / 2;
             int i = mid / cols;
             int j = mid % cols;
@@ -30,8 +31,6 @@ class Solution {
 
 
         return false;
-
-
     }
 }
 // @lc code=end
