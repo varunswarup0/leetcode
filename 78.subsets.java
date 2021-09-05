@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -11,23 +10,22 @@ import java.util.List;
 // @lc code=start
 class Solution {
 
-    List<Integer> set = new ArrayList<>();
-    List<List<Integer>> powerSet = new ArrayList<>();
-
-    void helper(int[] nums, int start) {
-
-        powerSet.add(new ArrayList<>(set));
-
-        for (int i = start; i < nums.length; i++) {
-            set.add(nums[i]);
-            helper(nums, i + 1);
-            set.remove(set.size() - 1);
-        }
-    }
-
     public List<List<Integer>> subsets(int[] nums) {
 
-        helper(nums, 0);
+        List<List<Integer>> powerSet = new ArrayList<>();
+
+        for (int i = 0; i < (1 << nums.length); i++) {
+
+            List<Integer> set = new ArrayList<>();
+
+            for (int j = 0; j < nums.length; j++)
+
+                // checking if j-th bit is set in i
+                if (((i >> j) & 1) != 0)
+                    set.add(nums[j]);
+
+            powerSet.add(new ArrayList<>(set));
+        }
         return powerSet;
     }
 }

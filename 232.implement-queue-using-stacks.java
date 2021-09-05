@@ -1,4 +1,5 @@
 import java.util.ArrayDeque;
+import java.util.Stack;
 
 /*
  * @lc app=leetcode id=232 lang=java
@@ -8,45 +9,35 @@ import java.util.ArrayDeque;
 
 // @lc code=start
 class MyQueue {
-    ArrayDeque<Integer> stack;
+    Stack<Integer> stack;
 
     /** Initialize your data structure here. */
     public MyQueue() {
-        this.stack = new ArrayDeque<>();
+        stack = new Stack<>();
     }
 
     /** Push element x to the back of queue. */
     public void push(int x) {
+
+        ArrayDeque<Integer> tempStack = new ArrayDeque<>();
+
+        while (!stack.isEmpty())
+            tempStack.push(stack.pop());
+
         stack.add(x);
+
+        while (!tempStack.isEmpty())
+            stack.push(tempStack.pop());
     }
 
     /** Removes the element from in front of queue and returns that element. */
     public int pop() {
-        ArrayDeque<Integer> tempStack = new ArrayDeque<>();
-        while (!stack.isEmpty())
-            tempStack.push(stack.pop());
-
-        int poppedElement = tempStack.pop();
-
-        while (!tempStack.isEmpty())
-            stack.push(tempStack.pop());
-
-        return poppedElement;
+        return stack.pop();
     }
 
     /** Get the front element. */
     public int peek() {
-        ArrayDeque<Integer> tempStack = new ArrayDeque<>();
-
-        while (!stack.isEmpty())
-            tempStack.push(stack.pop());
-
-        int peekElement = tempStack.peek();
-
-        while (!tempStack.isEmpty())
-            stack.push(tempStack.pop());
-
-        return peekElement;
+        return stack.peek();
     }
 
     /** Returns whether the queue is empty. */
